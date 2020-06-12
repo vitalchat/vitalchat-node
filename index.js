@@ -70,4 +70,49 @@ module.exports = class client {
             });
         });
     }
+
+    static devices() {
+        return client.get('/v1/devices').then((devices) => {
+            return devices;
+        });
+    }
+
+    static call(options) {
+        return client.post(`/v1/devices/${options.device_id}/call`, {
+            caller_id: options.caller_id,
+            action: options.action
+        }).then((data) => {
+            return data;
+        });
+    }
+
+    static privacy(options) {
+        return client.post(`/v1/devices/${options.device_id}/privacy`, {
+            privacy_till: options.privacy_till
+        }).then(() => {
+            return;
+        });
+    }
+
+    static screen_capture(options) {
+        return client.post(`/v1/devices/${options.device_id}/screen_capture`).then(() => {
+            return;
+        });
+    }
+
+    static screen(options) {
+        return client.post(`/v1/devices/${options.device_id}/screen`).then((screen) => {
+            return {
+                image: screen.image
+            };
+        });
+    }
+
+    static custom_url(options) {
+        return client.post(`/v1/devices/${options.device_id}/custom_url`, {
+            url: url
+        }).then(() => {
+            return;
+        });
+    }
 };

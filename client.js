@@ -10,7 +10,7 @@ class client {
         this.secret = options.secret;
     }
 
-    async sha256(value) {
+    sha256(value) {
         var hash = crypto.createHash('sha256');
         hash.update(value, 'utf8');
         var hashedValue = hash.digest('hex');

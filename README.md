@@ -1,6 +1,6 @@
 # vitalchat-node
 
-# Setup
+## Setup
 ```
 var vitalchat = require('vitalchat');
 var client = new vitalchat({
@@ -10,13 +10,13 @@ var client = new vitalchat({
 });
 ```
 
-# Get Devices
+## Get Devices
 ```
 var devices = await client.devices();
 console.log(devices);
 ```
 
-# Make A Call
+## Make A Call
 ```
 var data = await client.call({
     device_id: '',
@@ -26,7 +26,7 @@ var data = await client.call({
 console.log(data);
 ```
 
-# Set Privacy Mode
+## Set Privacy Mode
 ```
 await client.privacy({
     device_id: '',,
@@ -34,14 +34,14 @@ await client.privacy({
 });
 ```
 
-# Capture Screen
+## Capture Screen
 ```
 await client.screen_capture({
     device_id: ''
 });
 ```
 
-# Get Last Screen Capture
+## Get Last Screen Capture
 ```
 var image = await client.screen({
     device_id: ''
@@ -49,7 +49,7 @@ var image = await client.screen({
 console.log(image);
 ```
 
-# Set Custom URL
+## Set Custom URL
 ```
 await client.custom_url({
     device_id: ''

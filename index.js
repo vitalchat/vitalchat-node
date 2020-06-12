@@ -23,7 +23,7 @@ module.exports = class vitalchat {
         let counter = 1;
         let content = JSON.stringify(body || {});
         let prehash = `${secret}${counter}${content}`;
-        let signature = client.sha256(prehash);
+        let signature = this.sha256(prehash);
         return promise.resolve({
             type: 'sha256',
             counter: 1,
@@ -33,7 +33,7 @@ module.exports = class vitalchat {
     }
 
     async get(route) {
-        return client.genenerateHMAC(route).then((hmac) => {
+        return this.genenerateHMAC(route).then((hmac) => {
             return rp({
                 method: 'GET',
                 uri: `${this.host}${route}`,
@@ -52,7 +52,7 @@ module.exports = class vitalchat {
     }
 
     async post(route, body) {
-        return client.genenerateHMAC(route, body).then((hmac) => {
+        return this.genenerateHMAC(route, body).then((hmac) => {
             return rp({
                 method: 'POST',
                 uri: `${this.host}${route}`,
@@ -72,13 +72,13 @@ module.exports = class vitalchat {
     }
 
     async devices() {
-        return client.get('/v1/devices').then((devices) => {
+        return this.get('/v1/devices').then((devices) => {
             return devices;
         });
     }
 
     async call(options) {
-        return client.post(`/v1/devices/${options.device_id}/call`, {
+        return this.post(`/v1/devices/${options.device_id}/call`, {
             caller_id: options.caller_id,
             action: options.action
         }).then((data) => {
@@ -87,7 +87,7 @@ module.exports = class vitalchat {
     }
 
     async privacy(options) {
-        return client.post(`/v1/devices/${options.device_id}/privacy`, {
+        return this.post(`/v1/devices/${options.device_id}/privacy`, {
             privacy_till: options.privacy_till
         }).then(() => {
             return;
@@ -95,13 +95,13 @@ module.exports = class vitalchat {
     }
 
     async screen_capture(options) {
-        return client.post(`/v1/devices/${options.device_id}/screen_capture`).then(() => {
+        return this.post(`/v1/devices/${options.device_id}/screen_capture`).then(() => {
             return;
         });
     }
 
     async screen(options) {
-        return client.post(`/v1/devices/${options.device_id}/screen`).then((screen) => {
+        return this.post(`/v1/devices/${options.device_id}/screen`).then((screen) => {
             return {
                 image: screen.image
             };
@@ -109,7 +109,7 @@ module.exports = class vitalchat {
     }
 
     async custom_url(options) {
-        return client.post(`/v1/devices/${options.device_id}/custom_url`, {
+        return this.post(`/v1/devices/${options.device_id}/custom_url`, {
             url: url
         }).then(() => {
             return;

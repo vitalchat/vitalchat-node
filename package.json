@@ -1,0 +1,24 @@
+{
+  "name": "vitalchat",
+  "version": "1.0.0",
+  "description": "NodeJs Client Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalchat/vitalchat-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitalchat/vitalchat-node/issues"
+  },
+  "homepage": "https://github.com/vitalchat/vitalchat-node#readme",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  }
+}

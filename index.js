@@ -2,7 +2,7 @@ const promise = require('bluebird'),
     crypto = require('crypto'),
     rp = require('request-promise');
 
-module.exports = class client {
+module.exports = class vitalchat {
 
     constructor(options) {
         this.host = options.host;
@@ -10,14 +10,14 @@ module.exports = class client {
         this.secret = options.secret;
     }
 
-    static async sha256(value) {
+    async sha256(value) {
         var hash = crypto.createHash('sha256');
         hash.update(value, 'utf8');
         var hashedValue = hash.digest('hex');
         return hashedValue;
     }
 
-    static async genenerateHMAC(url, body) {
+    async genenerateHMAC(url, body) {
         let consumer_id = this.key;
         let secret = this.secret;
         let counter = 1;
@@ -32,7 +32,7 @@ module.exports = class client {
         });
     }
 
-    static async get(route) {
+    async get(route) {
         return client.genenerateHMAC(route).then((hmac) => {
             return rp({
                 method: 'GET',
@@ -51,7 +51,7 @@ module.exports = class client {
         });
     }
 
-    static async post(route, body) {
+    async post(route, body) {
         return client.genenerateHMAC(route, body).then((hmac) => {
             return rp({
                 method: 'POST',
@@ -71,13 +71,13 @@ module.exports = class client {
         });
     }
 
-    static async devices() {
+    async devices() {
         return client.get('/v1/devices').then((devices) => {
             return devices;
         });
     }
 
-    static async call(options) {
+    async call(options) {
         return client.post(`/v1/devices/${options.device_id}/call`, {
             caller_id: options.caller_id,
             action: options.action
@@ -86,7 +86,7 @@ module.exports = class client {
         });
     }
 
-    static async privacy(options) {
+    async privacy(options) {
         return client.post(`/v1/devices/${options.device_id}/privacy`, {
             privacy_till: options.privacy_till
         }).then(() => {
@@ -94,13 +94,13 @@ module.exports = class client {
         });
     }
 
-    static async screen_capture(options) {
+    async screen_capture(options) {
         return client.post(`/v1/devices/${options.device_id}/screen_capture`).then(() => {
             return;
         });
     }
 
-    static async screen(options) {
+    async screen(options) {
         return client.post(`/v1/devices/${options.device_id}/screen`).then((screen) => {
             return {
                 image: screen.image
@@ -108,7 +108,7 @@ module.exports = class client {
         });
     }
 
-    static async custom_url(options) {
+    async custom_url(options) {
         return client.post(`/v1/devices/${options.device_id}/custom_url`, {
             url: url
         }).then(() => {

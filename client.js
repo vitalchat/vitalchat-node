@@ -1,6 +1,6 @@
 const promise = require('bluebird'),
     crypto = require('crypto'),
-    rp = require('request-promise');
+    got = require('got');
 
 class client {
 
@@ -34,9 +34,8 @@ class client {
 
     async get(route) {
         return this.genenerateHMAC(route).then((hmac) => {
-            return rp({
+            return got(`${this.host}${route}`, {
                 method: 'GET',
-                uri: `${this.host}${route}`,
                 headers: {
                     'content-type': 'application/json',
                     'Consumer-ID': hmac.consumer_id,
@@ -44,7 +43,8 @@ class client {
                     'Signature-Type': hmac.type,
                     'Signature': hmac.signature
                 },
-                json: true
+                responseType: 'json',
+                resolveBodyOnly: true
             }).then((data) => {
                 return data;
             });
@@ -53,9 +53,8 @@ class client {
 
     async post(route, body) {
         return this.genenerateHMAC(route, body).then((hmac) => {
-            return rp({
+            return got(`${this.host}${route}`, {
                 method: 'POST',
-                uri: `${this.host}${route}`,
                 headers: {
                     'content-type': 'application/json',
                     'Consumer-ID': hmac.consumer_id,
@@ -63,8 +62,9 @@ class client {
                     'Signature-Type': hmac.type,
                     'Signature': hmac.signature
                 },
-                body: body,
-                json: true
+                json: body,
+                responseType: 'json',
+                resolveBodyOnly: true
             }).then((data) => {
                 return data;
             });

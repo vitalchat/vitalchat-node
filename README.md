@@ -56,3 +56,11 @@ await client.custom_url({
 });
 ```
 
+## Subscribe to Events
+```
+client.on('event', (event)=>{
+ console.log(event);
+});
+client.listen();
+```
+

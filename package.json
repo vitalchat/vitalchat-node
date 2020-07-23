@@ -1,6 +1,6 @@
 {
   "name": "vitalchat",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "NodeJs Client Library",
   "main": "index.js",
   "scripts": {

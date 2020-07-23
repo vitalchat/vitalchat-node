@@ -1,4 +1,3 @@
-
 var vitalchat = require('./index');
 var client = new vitalchat({
     host: process.env.VITALCHAT_HOST,
@@ -19,15 +18,19 @@ client.on('error', (err) => {
 });
 
 (async () => {
-    client.listen();
+    console.log('connecting to', process.env.VITALCHAT_HOST);
     var devices = await client.devices();
-    console.log(devices);
+    if (devices.length === 0) {
+        console.log('no devices found');
+        return;
+    }
     var data = await client.call({
         device_id: devices[0].device_id,
         caller_id: 'test caller',
         action: 'knock'
     });
     console.log(data);
+    client.listen();
 })().catch((err) => {
     console.error(err);
 });

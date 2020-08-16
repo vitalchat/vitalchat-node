@@ -52,7 +52,12 @@ console.log(image);
 ## Set Custom URL
 ```
 await client.custom_url({
-    device_id: ''
+    device_id: '',
+    url: 'https://google.com',
+    left: '0',
+    top: '0',
+    width: '0',
+    height: '0',
 });
 ```
 

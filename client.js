@@ -227,7 +227,11 @@ class client extends EventEmitter {
 
     async custom_url(options) {
         return this.post(`/v1/devices/${options.device_id}/custom_url`, {
-            url: url
+            url: options.url,
+            left: options.left,
+            top: options.top,
+            width: options.width,
+            height: options.height
         }).then(() => {
             return;
         });

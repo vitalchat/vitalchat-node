@@ -46,12 +46,17 @@ class client extends EventEmitter {
                     'Consumer-ID': hmac.consumer_id,
                     'Counter': hmac.counter,
                     'Signature-Type': hmac.type,
-                    'Signature': hmac.signature
+                    'Signature': hmac.signature,
+                    'User-Agent': 'vc-client'
                 },
                 responseType: 'json',
-                resolveBodyOnly: true
+                resolveBodyOnly: true,
+                http2: true,
+                dnsCache: false
             }).then((data) => {
                 return data;
+            }).catch((err) => {
+                console.log(err);
             });
         });
     }

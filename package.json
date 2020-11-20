@@ -18,9 +18,9 @@
   "homepage": "https://github.com/vitalchat/vitalchat-node#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
-    "got": "^11.7.0",
+    "got": "^11.8.0",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
-    "ws": "^7.3.1"
+    "ws": "^7.4.0"
   }
 }

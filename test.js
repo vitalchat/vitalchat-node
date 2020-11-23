@@ -29,7 +29,7 @@ client.on('error', (err) => {
         caller_id: 'test caller',
         action: 'knock'
     });
-    console.log(data);
+    console.log(JSON.stringify(data));
     client.listen();
 })().catch((err) => {
     console.error(err);

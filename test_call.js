@@ -6,11 +6,11 @@ var client = new vitalchat({
 });
 
 client.on('event', (event) => {
-    console.log(JSON.stringify(event));
+    console.log(JSON.stringify(event, null, '\t'));
 });
 
 client.on('log', (log) => {
-    console.log(JSON.stringify(log));
+    console.log(JSON.stringify(log, null, '\t'));
 });
 
 client.on('error', (err) => {
@@ -29,7 +29,7 @@ client.on('error', (err) => {
         caller_id: 'test caller',
         action: 'knock'
     });
-    console.log(JSON.stringify(data));
+    console.log(JSON.stringify(data, null, '\t'));
 })().catch((err) => {
     console.error(err);
 });

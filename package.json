@@ -1,6 +1,6 @@
 {
   "name": "vitalchat",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "NodeJs Client Library",
   "main": "index.js",
   "scripts": {
@@ -18,9 +18,9 @@
   "homepage": "https://github.com/vitalchat/vitalchat-node#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
-    "got": "^11.8.0",
-    "lodash": "^4.17.20",
+    "got": "^11.8.2",
+    "lodash": "^4.17.21",
     "moment": "^2.29.1",
-    "ws": "^7.4.0"
+    "ws": "^7.5.3"
   }
 }

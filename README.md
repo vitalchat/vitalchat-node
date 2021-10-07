@@ -33,16 +33,17 @@ console.log(data);
 ```
 await client.privacy({
     device: '',,
-    privacy_till: new Date().getTime() + (5 * 60 * 1000) // 5 minutes in the future
+    privacy: true
 });
 ```
 
 ## Capture Screen
 
 ```
-await client.screen_capture({
+let image = await client.screen_capture({
     device: ''
 });
+console.log(image);
 ```
 
 ## Get Last Screen Capture
@@ -52,19 +53,6 @@ var image = await client.screen({
     device: ''
 });
 console.log(image);
-```
-
-## Set Custom URL
-
-```
-await client.custom_url({
-    device: '',
-    url: 'https://google.com',
-    left: '0',
-    top: '0',
-    width: '0',
-    height: '0',
-});
 ```
 
 ## Set Custom URL

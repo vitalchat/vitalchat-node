@@ -2,7 +2,7 @@ const EventEmitter = require('events'),
 	_ = require('lodash'),
 	promise = require('bluebird'),
 	crypto = require('crypto'),
-	got = require('got'),
+	axios = require('axios'),
 	moment = require('moment'),
 	ws = require('ws');
 
@@ -38,7 +38,8 @@ class client extends EventEmitter {
 
 	async get(route) {
 		return this.genenerateHMAC().then((hmac) => {
-			return got(`${this.host}/integration${route}`, {
+			return axios({
+				url: `${this.host}/integration${route}`,
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
@@ -46,25 +47,21 @@ class client extends EventEmitter {
 					'Counter': hmac.counter,
 					'Signature-Type': hmac.type,
 					'Signature': hmac.signature,
-					'User-Agent': 'vc-client',
+					'User-Agent': '',
 				},
 				responseType: 'json',
-				resolveBodyOnly: true,
-				http2: true,
-				dnsCache: false,
-			})
-				.then((data) => {
-					return data;
-				})
-				.catch((err) => {
-					console.log(err);
-				});
+			}).then((response) => {
+				return response.data;
+			}).catch((err) => {
+				console.log(err);
+			});
 		});
 	}
 
 	async post(route, body) {
 		return this.genenerateHMAC(body).then((hmac) => {
-			return got(`${this.host}/integration${route}`, {
+			return axios({
+				url: `${this.host}/integration${route}`,
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -72,12 +69,14 @@ class client extends EventEmitter {
 					'Counter': hmac.counter,
 					'Signature-Type': hmac.type,
 					'Signature': hmac.signature,
+					'User-Agent': '',
 				},
-				json: body,
+				data: body,
 				responseType: 'json',
-				resolveBodyOnly: true,
-			}).then((data) => {
-				return data;
+			}).then((response) => {
+				return response.data;
+			}).catch((err) => {
+				console.log(err);
 			});
 		});
 	}

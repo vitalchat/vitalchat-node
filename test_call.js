@@ -20,6 +20,7 @@ client.on('error', (err) => {
 (async () => {
 	console.log('connecting to', process.env.VITALCHAT_HOST);
 	var devices = await client.devices();
+	console.log(devices);
 	if (devices.length === 0) {
 		console.log('no devices found');
 		return;

@@ -202,6 +202,7 @@ class client extends EventEmitter {
 	async enter(options) {
 		return this.post(`/v1/devices/${options.device}/enter`, {
 			name: options.name,
+			device_description: options.device_description
 		}).then((data) => {
 			return data;
 		});

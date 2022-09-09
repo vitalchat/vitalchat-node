@@ -28,6 +28,7 @@ client.on('error', (err) => {
 	var data = await client.enter({
 		device: devices[0].device_id,
 		name: 'test caller',
+		device_description: 'John Smith'
 	});
 	console.log(JSON.stringify(data, null, '\t'));
 })().catch((err) => {

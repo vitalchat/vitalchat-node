@@ -248,6 +248,30 @@ class client extends EventEmitter {
 			return;
 		});
 	}
+
+	async meeting_link(options) {
+		return this.post(`/v1/direct/meetings/create`, {}).then((data) => {
+			return data;
+		});
+	}
+
+	async invite(options) {
+		return this.post(`/v1/devices/${options.device}/invites/add`, {}).then((data) => {
+			return data;
+		});
+	}
+
+	async invite_delete(options) {
+		return this.post(`/v1/devices/${options.device}/invites/delete`, {}).then((data) => {
+			return data;
+		});
+	}
+
+	async invite_clear(options) {
+		return this.post(`/v1/devices/${options.device}/invites/clear`, {}).then((data) => {
+			return data;
+		});
+	}
 }
 
 module.exports = client;

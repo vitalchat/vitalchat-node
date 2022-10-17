@@ -255,6 +255,12 @@ class client extends EventEmitter {
 		});
 	}
 
+	async join(options) {
+		return this.post(`/v1/meetings/join`, options).then((data) => {
+			return data;
+		});
+	}
+
 	async invite(options) {
 		return this.post(`/v1/devices/${options.device}/invites/add`, {}).then((data) => {
 			return data;

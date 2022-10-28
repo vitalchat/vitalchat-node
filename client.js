@@ -249,6 +249,12 @@ class client extends EventEmitter {
 		});
 	}
 
+	async reset(options) {
+		return this.post(`/v1/devices/${options.device}/reset`, {}).then(() => {
+			return;
+		});
+	}
+
 	async meeting_link(options) {
 		return this.post(`/v1/direct/meetings/create`, {}).then((data) => {
 			return data;

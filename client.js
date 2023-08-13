@@ -50,11 +50,13 @@ class client extends EventEmitter {
 					'User-Agent': '',
 				},
 				responseType: 'json',
-			}).then((response) => {
-				return response.data;
-			}).catch((err) => {
-				console.log(err);
-			});
+			})
+				.then((response) => {
+					return response.data;
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		});
 	}
 
@@ -73,11 +75,13 @@ class client extends EventEmitter {
 				},
 				data: body,
 				responseType: 'json',
-			}).then((response) => {
-				return response.data;
-			}).catch((err) => {
-				console.log(err);
-			});
+			})
+				.then((response) => {
+					return response.data;
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		});
 	}
 
@@ -202,7 +206,7 @@ class client extends EventEmitter {
 	async enter(options) {
 		return this.post(`/v1/devices/${options.device}/enter`, {
 			name: options.name,
-			device_description: options.device_description
+			device_description: options.device_description,
 		}).then((data) => {
 			return data;
 		});
@@ -218,6 +222,12 @@ class client extends EventEmitter {
 
 	async screen_capture(options) {
 		return this.post(`/v1/devices/${options.device_id}/screen_capture`).then(() => {
+			return;
+		});
+	}
+
+	async hangup(options) {
+		return this.post(`/v1/devices/${options.device_id}/hangup`).then(() => {
 			return;
 		});
 	}

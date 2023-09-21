@@ -294,6 +294,14 @@ class client extends EventEmitter {
 			return data;
 		});
 	}
+
+	async observe(options) {
+		return this.post(`/v1/devices/${options.device}/observe`, {
+			device_description: options.device_description,
+		}).then((data) => {
+			return data;
+		});
+	}
 }
 
 module.exports = client;
